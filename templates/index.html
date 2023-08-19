@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Machine Learning Prediction</title>
+</head>
+<body>
+    <h1>Machine Learning Prediction</h1>
+    <form id="prediction-form">
+        <label for="length">Length:</label>
+        <input type="number" name="length" id="length" step="any" value="44.301529" required><br>
+
+        <label for="weight">Weight:</label>
+        <input type="number" name="weight" id="weight" step="any" value="0.9439796" required><br>
+
+        <label for="count">Count:</label>
+        <input type="number" name="count" id="count" step="any" value="612.683711" required><br>
+
+        <label for="looped">Looped:</label>
+        <input type="number" name="looped" id="looped" step="any" value="107.881919" required><br>
+
+        <label for="neighbors">Neighbors:</label>
+        <input type="number" name="neighbors" id="neighbors" step="any" value="2.238271" required><br>
+
+        <label for="income">Income:</label>
+        <input type="number" name="income" id="income" step="any" value="868959000.0" required><br>
+
+        <!-- Add a button to trigger the POST request -->
+        <button type="button" id="predict-button">Predict</button>
+    </form>
+
+    <div id="output"></div>
+
+    <script>
+    // JavaScript to handle button click event
+    document.getElementById("predict-button").addEventListener("click", function() {
+        // ... Your existing code to send the POST request ...
+
+        fetch('/predict', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({data: data})
+        })
+        .then(response => response.json())
+        .then(result => {
+            // Print the result object to see its structure
+            console.log(result);
+
+            // Access the "predictions" array correctly
+            const predictions = result.predictions;
+
+            // ... Your code to display the predictions ...
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            document.getElementById("output").innerText = "Error: " + error;
+        });
+    });
+</script>
+
+</body>
+</html>
